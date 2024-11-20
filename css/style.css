@@ -1,0 +1,99 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Barra de navegación */
+.barra-navegacion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f48024;
+    padding: 10px 20px;
+    color: white;
+}
+
+.barra-navegacion .logo {
+    font-size: 1.5em;
+}
+
+.barra-navegacion .barra-busqueda input {
+    padding: 5px;
+    width: 200px;
+}
+
+.barra-navegacion .barra-busqueda button,
+.barra-navegacion .acciones-usuario button {
+    background-color: white;
+    color: #f48024;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* Contenedor principal */
+.contenedor-principal {
+    display: flex;
+    margin: 20px;
+}
+
+/* Barra lateral */
+.barra-lateral {
+    width: 20%;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+.barra-lateral ul {
+    list-style: none;
+    padding: 0;
+}
+
+.barra-lateral li {
+    margin: 10px 0;
+}
+
+/* Sección de preguntas */
+.seccion-preguntas {
+    width: 50%;
+    margin-right: 20px;
+}
+
+.crear-pregunta button {
+    background-color: #f48024;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.lista-preguntas .elemento-pregunta {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.lista-preguntas .elemento-pregunta h3 {
+    margin: 0;
+}
+
+.lista-preguntas .elemento-pregunta p {
+    margin: 5px 0;
+    color: gray;
+}
+
+/* Detalles de la pregunta */
+.detalles-pregunta {
+    width: 30%;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.detalles-pregunta .respuestas .elemento-respuesta {
+    border-top: 1px solid #ddd;
+    padding: 10px 0;
+}
