@@ -14,7 +14,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     padding: 30px;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px; /* Más ancho para acomodar las columnas */
     box-sizing: border-box;
 }
 
@@ -26,14 +26,22 @@ body {
     color: #333;
 }
 
-.formulario-login label {
+/* NUEVO: Grid para organizar el formulario en columnas */
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    gap: 20px; /* Espacio entre los elementos */
+    margin-bottom: 20px; /* Separación con el botón */
+}
+
+.form-item label {
     display: block;
     font-size: 14px;
     margin-bottom: 6px;
     color: #333;
 }
 
-.formulario-login input {
+.form-item input {
     width: 100%;
     box-sizing: border-box;
     padding: 12px;
@@ -56,7 +64,6 @@ body {
     color: red;
     font-size: 12px;
     margin-top: 4px;
-    margin-bottom: 16px;
     display: block;
 }
 
@@ -108,4 +115,11 @@ body {
 .boton-iniciar:active {
     transform: translateY(0);
     box-shadow: 0 3px 6px rgba(0, 121, 211, 0.4);
+}
+
+/* Responsive: una sola columna en pantallas pequeñas */
+@media (max-width: 768px) {
+    .grid-form {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
 }
