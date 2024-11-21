@@ -59,7 +59,7 @@
 
                     require_once "./php/conexion.php";
 
-                    $sql = "SELECT count(id) FROM preguntas;";
+                    $sql = "SELECT count(id) FROM tbl_preguntas;";
 
                     $stmt = $conexion->prepare($sql);
                     $stmt->execute();
@@ -82,9 +82,9 @@
                             p.fecha_publicacion, 
                             u.nombre_usuario, 
                             COUNT(r.id) AS numero_respuestas 
-                        FROM preguntas p
-                        LEFT JOIN usuarios u ON p.usuario_id = u.id
-                        LEFT JOIN respuestas r ON r.pregunta_id = p.id
+                        FROM tbl_preguntas p
+                        LEFT JOIN tbl_usuarios u ON p.usuario_id = u.id
+                        LEFT JOIN tbl_respuestas r ON r.pregunta_id = p.id
                         GROUP BY p.id
                         ORDER BY p.fecha_publicacion DESC
                     ";
