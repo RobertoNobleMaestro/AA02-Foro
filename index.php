@@ -18,8 +18,8 @@
             <button>Buscar</button>
         </div>
         <div class="acciones-usuario">
-            <button>Iniciar sesión</button>
-            <button>Crear cuenta</button>
+            <button><a href="./login.php">Iniciar sessión</a></button>
+            <button><a href="./registrar.php">Crear cuenta</a></button>
         </div>
     </header>
 

@@ -16,7 +16,7 @@
             <label for="contrasena">Contraseña <span>*</span></label>
             <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
             
-            <a href="./registrar.php" class="enlace-registrar">¿Es tu primera vez en Reddit? Regístrate</a>
+            <a href="./registrar.php" class="enlace-registrar">¿Es tu primera vez en StackOverflow? Regístrate</a>
             
             <button type="submit" class="boton-iniciar">Iniciar sesión</button>
         </form>
