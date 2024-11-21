@@ -23,6 +23,22 @@ function validar_nombre_usuario() {
     return esValido;
 }
 
+function comprobarCamposVacios() {
+    let campos = [nombre_usuario, nombre_real, correo, contrasena];
+    let esValido = true;
+    let mensaje = '';
+
+    campos.forEach(campo => {
+        if (campo.value.trim() === '') {
+            esValido = false;
+            mensaje = 'Ningún campo puede estar vacío.';
+        }
+    });
+
+    mostrarResultado(campos[0], esValido, 'error-campos-vacios', mensaje);
+    return esValido;
+}
+
 // Validación de nombre real
 function validar_nombre_real() {
     let regex_nombre_real = /^[a-zA-Z\s]+$/;
