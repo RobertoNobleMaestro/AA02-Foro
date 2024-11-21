@@ -12,13 +12,18 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #f48024;
+    background-color: #edc19d;
     padding: 10px 20px;
     color: white;
 }
 
 .barra-navegacion .logo {
     font-size: 1.5em;
+}
+
+.logo-imagen {
+    width: 200px;
+    height: auto;
 }
 
 .barra-navegacion .barra-busqueda input {
@@ -44,8 +49,10 @@ body {
 /* Barra lateral */
 .barra-lateral {
     width: 20%;
-    padding: 10px;
-    background-color: #f2f2f2;
+    padding-left: 20px;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    height: 110px;
 }
 
 .barra-lateral ul {
@@ -72,6 +79,10 @@ body {
     margin-bottom: 20px;
 }
 
+.lista-preguntas{
+    margin: 20px;
+}
+
 .lista-preguntas .elemento-pregunta {
     border-bottom: 1px solid #ddd;
     padding: 10px 0;
@@ -89,8 +100,10 @@ body {
 /* Detalles de la pregunta */
 .detalles-pregunta {
     width: 30%;
-    padding: 10px;
-    background-color: #f9f9f9;
+    padding-left: 20px;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    height: 260px;
 }
 
 .detalles-pregunta .respuestas .elemento-respuesta {

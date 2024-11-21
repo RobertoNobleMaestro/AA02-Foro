@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stack Overflow</title>
+    <link rel="shortcut icon" href="./img/icono.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
+    <title>Stack Overflow</title>
 </head>
 <body>
     <!-- Encabezado -->
     <header class="barra-navegacion">
-        <div class="logo">Stack Overflow</div>
+        <div>
+            <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
+        </div>
         <div class="barra-busqueda">
             <input type="text" placeholder="Buscar...">
             <button>Buscar</button>
@@ -26,15 +29,15 @@
         <aside class="barra-lateral">
             <ul>
                 <li>Preguntas</li>
+                <form action="" method="post">
+                    <input type="submit" name="btn_crear_pregunta" value="Crear pregunta">
+                </form>
                 <li>Historial de preguntas</li>
             </ul>
         </aside>
 
         <!-- Sección de preguntas -->
         <section class="seccion-preguntas">
-            <form action="" method="post">
-                <input type="submit" name="btn_crear_pregunta" value="Crear pregunta">
-            </form>
             <div class="lista-preguntas">
                 <?php if(isset($_POST['btn_crear_pregunta'])){ ?>
                     <h2>Formulario creación preguntas</h2>
@@ -52,11 +55,20 @@
             </div>
             <div class="lista-preguntas">
                 <h2>Preguntas</h2>
-                <h4>Número total de preguntas</h4>
-                <!-- <div class="elemento-pregunta">
-                    <h3>¿Cómo centrar un div en CSS?</h3>
-                    <p>Preguntado por <strong>Usuario123</strong> - 2 respuestas</p>
-                </div> -->
+                <?php
+
+                    require_once "./php/conexion.php";
+
+                    $sql = "SELECT count(id) FROM preguntas;";
+
+                    $stmt = $conexion->prepare($sql);
+                    $stmt->execute();
+                    $total = $stmt->fetchColumn();
+
+                    echo "<h4>Número total de preguntas: " . $total . "</h4>";
+
+                ?>
+                <hr>
                 <?php
                     
                     require_once "./php/conexion.php";
@@ -95,7 +107,6 @@
                 ?>
             </div>
         </section>
-
         <!-- Detalles de la pregunta -->
         <section class="detalles-pregunta">
             <h2>Título de la pregunta</h2>
