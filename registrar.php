@@ -12,14 +12,14 @@
 
 <div class="contenedor-login">
     <form class="formulario-login" action="./php/login_validacion.php" method="POST" id="formulario">
-        <h2>Iniciar sesión</h2>
+        <h2>Crear usuario</h2>
 
         <label for="nombre_usuario">Nombre de usuario *</label>
         <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre de usuario">
         <span class="mensaje-error" id="error-nombre-usuario"></span>
 
         <label for="nombre_real">Nombre y Apelidos *</label>
-        <input type="text" id="nombre_real" name="nombre_real" placeholder="Nombre real">
+        <input type="text" id="nombre_real" name="nombre_real" placeholder="Nombre y Apellidos">
         <span class="mensaje-error" id="error-nombre-real"></span>
 
         <label for="email">Correo electrónico *</label>
