@@ -32,20 +32,23 @@
 
         <!-- Sección de preguntas -->
         <section class="seccion-preguntas">
-            <div class="crear-pregunta">
-                <button>Crear una pregunta</button>
-            </div>
+            <form action="" method="post">
+                <input type="submit" name="btn_crear_pregunta" value="Crear pregunta">
+            </form>
             <div class="lista-preguntas">
-                <h2>Formulario creación preguntas</h2>
-                <form action="" method="post">
-                    <label for="titulo">Título:</label>
-                    <input type="text" id="titulo" name="titulo">
-                    <br><br>
-                    <label for="descripcion">Descripción:</label>
-                    <textarea id="descripcion" name="descripcion"></textarea>
-                    <br><br>
-                    <button name="enviar_pregunta">Enviar pregunta</button>
-                </form>
+                <?php if(isset($_POST['btn_crear_pregunta'])){ ?>
+                    <h2>Formulario creación preguntas</h2>
+                    <form action="" method="post">
+                        <label for="titulo">Título:</label>
+                        <input type="text" id="titulo" name="titulo">
+                        <br><br>
+                        <label for="descripcion">Descripción:</label>
+                        <textarea id="descripcion" name="descripcion"></textarea>
+                        <br><br>
+                        <button name="enviar_pregunta">Enviar pregunta</button>
+                        <button><a href="./index.php">Eliminar pregunta</a></button>
+                    </form>
+                <?php } ?>
             </div>
             <div class="lista-preguntas">
                 <h2>Preguntas</h2>
@@ -54,14 +57,11 @@
                     <h3>¿Cómo centrar un div en CSS?</h3>
                     <p>Preguntado por <strong>Usuario123</strong> - 2 respuestas</p>
                 </div>
-                <div class="elemento-pregunta">
-                    <h3>¿Cuál es la diferencia entre let y var en JavaScript?</h3>
-                    <p>Preguntado por <strong>Usuario456</strong> - 5 respuestas</p>
-                </div>
-                <div class="elemento-pregunta">
-                    <h3>¿Cómo configurar un servidor local con Node.js?</h3>
-                    <p>Preguntado por <strong>Usuario789</strong> - 3 respuestas</p>
-                </div>
+                <?php 
+                
+                    
+
+                ?>
             </div>
         </section>
 
