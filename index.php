@@ -53,14 +53,45 @@
             <div class="lista-preguntas">
                 <h2>Preguntas</h2>
                 <h4>Número total de preguntas</h4>
-                <div class="elemento-pregunta">
+                <!-- <div class="elemento-pregunta">
                     <h3>¿Cómo centrar un div en CSS?</h3>
                     <p>Preguntado por <strong>Usuario123</strong> - 2 respuestas</p>
-                </div>
-                <?php 
-                
+                </div> -->
+                <?php
                     
+                    require_once "./php/conexion.php";
 
+                    $sql = "SELECT 
+                            p.id AS pregunta_id, 
+                            p.titulo, 
+                            p.descripcion, 
+                            p.etiquetas, 
+                            p.usuario_id, 
+                            p.fecha_publicacion, 
+                            u.nombre_usuario, 
+                            COUNT(r.id) AS numero_respuestas 
+                        FROM preguntas p
+                        LEFT JOIN usuarios u ON p.usuario_id = u.id
+                        LEFT JOIN respuestas r ON r.pregunta_id = p.id
+                        GROUP BY p.id
+                        ORDER BY p.fecha_publicacion DESC
+                    ";
+
+                    $stmt = $conexion->prepare($sql);
+                    $stmt->execute();
+                    $preguntas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    if (count($preguntas) > 0) {
+                        foreach ($preguntas as $pregunta) {
+                            echo "<div class='elemento-pregunta'>";
+                            echo "<h3>" . $pregunta['titulo'] . "</h3>";
+                            echo "<p>Preguntado por: " . $pregunta['nombre_usuario'] . "</p>";
+                            echo "<p>Número de respuestas: " . $pregunta['numero_respuestas'] . "</p>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "No hay preguntas en la base de datos.";
+                    }
                 ?>
             </div>
         </section>
