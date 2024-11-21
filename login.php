@@ -11,14 +11,14 @@
         <form class="formulario-login" method="POST" action="./php/login_validacion.php">
             <h2>Iniciar sesión</h2>
             <label for="correo">Correo electrónico o nombre de usuario <span>*</span></label>
-            <input type="email" id="correo" name="correo" placeholder="Correo electrónico o nombre de usuario">
+            <input type="text" id="correo" name="correo" placeholder="Correo electrónico o nombre de usuario">
             
             <label for="contrasena">Contraseña <span>*</span></label>
             <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
             
             <a href="./registrar.php" class="enlace-registrar">¿Es tu primera vez en StackOverflow? Regístrate</a>
             
-            <button type="submit" class="boton-iniciar">Iniciar sesión</button>
+            <button type="submit" class="boton-iniciar" name="btn_login">Iniciar sesión</button>
         </form>
     </div>
 </body>
