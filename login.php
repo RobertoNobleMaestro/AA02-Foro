@@ -12,10 +12,10 @@
             <h2>Iniciar sesión</h2>
             <label for="correo">Correo electrónico o nombre de usuario <span>*</span></label>
             <input type="text" id="correo" name="correo" placeholder="Correo electrónico o nombre de usuario">
-            
+            <br><br>
             <label for="contrasena">Contraseña <span>*</span></label>
             <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
-            
+            <br><br>
             <a href="./registrar.php" class="enlace-registrar">¿Es tu primera vez en StackOverflow? Regístrate</a>
             
             <button type="submit" class="boton-iniciar" name="btn_login">Iniciar sesión</button>

@@ -28,11 +28,22 @@
         <!-- Barra lateral -->
         <aside class="barra-lateral">
             <ul>
-                <li>Preguntas</li>
-                <form action="" method="post">
-                    <input type="submit" name="btn_crear_pregunta" value="Crear pregunta">
-                </form>
-                <li>Historial de preguntas</li>
+                
+                <li>
+                    <button><a href="./index.php">Preguntas</a></button>
+                </li>
+                <?php if(!isset($_SESSION)){ ?>
+                    <li>
+                        <form action="" method="post">
+                            <input type="submit" name="btn_crear_pregunta" value="Crear pregunta" disabled>
+                        </form>
+                    </li>
+                <?php }?>
+                <?php if(!isset($_SESSION)){ ?>
+                    <li>
+                        <input type="submit" value="Historial de preguntas" disabled>
+                    </li>
+                <?php }?>
             </ul>
         </aside>
 
