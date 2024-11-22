@@ -98,7 +98,7 @@ if ($errores) {
         $stmt->bindParam(3, $email);
         $stmt->bindParam(4, $contra);     
         $stmt->execute();
-        header('location:../index.php');
+        header('location:../login.php');
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
