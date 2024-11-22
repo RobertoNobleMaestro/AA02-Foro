@@ -32,6 +32,9 @@
                 <li>
                     <button><a href="./index.php">Preguntas</a></button>
                 </li>
+                <li>
+                    <button><a href="./usuarios.php">Usuarios</a></button>
+                </li>
                 <?php if(!isset($_SESSION)){ ?>
                     <li>
                         <form action="" method="post">
