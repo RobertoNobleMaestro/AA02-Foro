@@ -12,7 +12,7 @@ CREATE TABLE tbl_usuarios (
 
 -- Tabla de tbl_preguntas
 CREATE TABLE tbl_preguntas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_preguntas INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
     etiquetas VARCHAR(255), 
@@ -22,7 +22,7 @@ CREATE TABLE tbl_preguntas (
 
 -- Tabla de tbl_respuestas
 CREATE TABLE tbl_respuestas (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_repuestas INT AUTO_INCREMENT PRIMARY KEY,
     pregunta_id INT NOT NULL, 
     usuario_id INT NOT NULL,  
     contenido TEXT NOT NULL,

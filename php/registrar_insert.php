@@ -68,8 +68,8 @@ if (isset($_POST['contrasena']) && !empty($_POST['contrasena'])) {
     }
 }
 
-if (isset($_POST['contrasena_repetir']) && !empty($_POST['contrasena_repetir'])) {
-    $contra_repetir = htmlspecialchars($_POST['contrasena_repetir']);
+if (isset($_POST['repetir']) && !empty($_POST['repetir'])) {
+    $contra_repetir = htmlspecialchars($_POST['repetir']);
     if ($contra !== $contra_repetir) {
         if (!$errores) {
             $errores .= "?contraNoCoinciden=true";
@@ -91,14 +91,15 @@ if ($errores) {
 } else {
     require_once('../php/conexion.php');
         try {
+        $contra_encriptada = password_hash($contra, PASSWORD_BCRYPT);
         $sql = "INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena) VALUES (?, ?, ?, ?);";
         $stmt = $conexion->prepare($sql);
         $stmt->bindParam(1, $nombre_usuario);
         $stmt->bindParam(2, $nombre_real);
         $stmt->bindParam(3, $email);
-        $stmt->bindParam(4, $contra);     
+        $stmt->bindParam(4, $contra_encriptada);     
         $stmt->execute();
-        header('location:../index.php');
+        header('location:../login.php');
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
