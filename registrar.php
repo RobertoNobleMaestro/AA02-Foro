@@ -11,7 +11,7 @@
 <body>
 
     <div class="contenedor-login">
-        <form class="formulario-login" action="./php/login_validacion.php" method="POST" id="formulario">
+        <form class="formulario-login" action="./php/registrar_insert.php" method="POST" id="formulario">
             <h2>Crear usuario</h2>
             <div class="grid-form">
                 <div class="form-item">

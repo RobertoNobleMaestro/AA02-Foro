@@ -5,6 +5,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 /* Barra de navegación */
@@ -16,6 +17,7 @@ body {
     background-color: rgb(255, 38, 38);
     padding: 10px 20px;
     color: white;
+    z-index: 9999;
 }
 
 .barra-navegacion .logo {
@@ -65,10 +67,11 @@ body {
     margin: 10px 0;
 }
 
-/* Sección de preguntas */
 .seccion-preguntas {
     width: 50%;
     margin-right: 20px;
+    height: 100vh; /* O el valor adecuado para tu diseño */
+    overflow-y: auto;
 }
 
 .crear-pregunta button {
