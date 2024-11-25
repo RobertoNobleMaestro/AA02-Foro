@@ -13,6 +13,8 @@ try {
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
     if ($usuario) {
         $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
+        $_SESSION['id_usuario'] = $usuario['id_usuario'];
+
         if (password_verify($contrasena_ingresada, $usuario['contrasena'])) {
             header('Location:../index.php');
         } else {

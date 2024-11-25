@@ -15,7 +15,7 @@ CREATE TABLE tbl_preguntas (
     id_preguntas INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
-    etiquetas VARCHAR(255), 
+    etiquetas VARCHAR(255) NULL, 
     usuario_id INT NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
