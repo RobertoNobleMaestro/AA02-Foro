@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,12 +20,19 @@
             <input type="text" placeholder="Buscar...">
             <button>Buscar</button>
         </div>
+        <?php
+        if (!isset($_SESSION['nombre_usuario'])) {
+        echo'
         <div class="acciones-usuario">
             <button><a href="./login.php">Iniciar sessión</a></button>
             <button><a href="./registrar.php">Crear cuenta</a></button>
         </div>
+        </header>';
+        } else {
+            echo '<div class="acciones-usuario">bienvenido ' . $_SESSION['nombre_usuario']. '  ' . '<button><a href="./php/cerrar_session.php">cerrar session</a></button> </div>';
+        }
+        ?>
     </header>
-
     <!-- Contenido principal -->
     <main class="contenedor-principal">
         <!-- Barra lateral -->
@@ -35,16 +45,16 @@
                 <li>
                     <button><a href="./usuarios.php">Usuarios</a></button>
                 </li>
-                <?php if(!isset($_SESSION)){ ?>
+                <?php if(isset($_SESSION['nombre_usuario'])){ ?>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" name="btn_crear_pregunta" value="Crear pregunta" disabled>
+                            <input type="submit" name="btn_crear_pregunta" value="Crear pregunta">
                         </form>
                     </li>
                 <?php }?>
-                <?php if(!isset($_SESSION)){ ?>
+                <?php if(isset($_SESSION['nombre_usuario'])){ ?>
                     <li>
-                        <input type="submit" value="Historial de preguntas" disabled>
+                        <input type="submit" value="Historial de preguntas">
                     </li>
                 <?php }?>
             </ul>
@@ -73,7 +83,7 @@
 
                     require_once "./php/conexion.php";
 
-                    $sql = "SELECT count(id) FROM tbl_preguntas;";
+                    $sql = "SELECT count(id_preguntas) FROM tbl_preguntas;";
 
                     $stmt = $conexion->prepare($sql);
                     $stmt->execute();
@@ -88,18 +98,18 @@
                     require_once "./php/conexion.php";
 
                     $sql = "SELECT 
-                            p.id AS pregunta_id, 
+                            p.id_preguntas AS pregunta_id, 
                             p.titulo, 
                             p.descripcion, 
                             p.etiquetas, 
                             p.usuario_id, 
                             p.fecha_publicacion, 
                             u.nombre_usuario, 
-                            COUNT(r.id) AS numero_respuestas 
+                            COUNT(r.id_respuestas) AS numero_respuestas 
                         FROM tbl_preguntas p
-                        LEFT JOIN tbl_usuarios u ON p.usuario_id = u.id
-                        LEFT JOIN tbl_respuestas r ON r.pregunta_id = p.id
-                        GROUP BY p.id
+                        inner JOIN tbl_usuarios u ON p.usuario_id = u.id_usuario
+                        inner JOIN tbl_respuestas r ON r.pregunta_id = p.id_preguntas
+                        GROUP BY p.id_preguntas
                         ORDER BY p.fecha_publicacion DESC
                     ";
 
@@ -113,7 +123,9 @@
                             echo "<h3>" . $pregunta['titulo'] . "</h3>";
                             echo "<p>Preguntado por: " . $pregunta['nombre_usuario'] . "</p>";
                             echo "<p>Número de respuestas: " . $pregunta['numero_respuestas'] . "</p>";
-                            echo "</div>";
+                            echo "<form method='POST' action='index.php?id=".$pregunta['pregunta_id'] ."'>";
+                                echo "<button type='submit' name='desplegar_preguntas'>Texto del botón</button>";
+                            echo "</form>";
                         }
                     } else {
                         echo "No hay preguntas en la base de datos.";
@@ -129,6 +141,12 @@
                 <div class="elemento-respuesta">
                     <h3>Respuestas</h3>
                     <p>Este es un ejemplo de una respuesta.</p>
+                    <?php
+                        if (isset($_GET['id'])) {
+                            $pregunta_id = $_GET['id']; 
+                            echo "Mostrando detalles para la pregunta con ID: " . $pregunta_id;
+                        }
+                    ?>
                     <span>Respondido por <strong>UsuarioExperto</strong></span>
                 </div>
             </div>

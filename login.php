@@ -10,11 +10,15 @@
     <div class="contenedor-login">
         <form class="formulario-login" method="POST" action="./php/login_validacion.php">
             <h2>Iniciar sesión</h2>
+            <div class="form-item">
             <label for="correo">Correo electrónico o nombre de usuario <span>*</span></label>
             <input type="text" id="correo" name="correo" placeholder="Correo electrónico o nombre de usuario">
+            </div>
             <br><br>
+            <div class="form-item">
             <label for="contrasena">Contraseña <span>*</span></label>
             <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+            <div class="form-item">
             <br><br>
             <a href="./registrar.php" class="enlace-registrar">¿Es tu primera vez en StackOverflow? Regístrate</a>
             

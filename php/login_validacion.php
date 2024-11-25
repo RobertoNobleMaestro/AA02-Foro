@@ -11,8 +11,8 @@ try {
     $stmt->bindParam(':email', $nombre_usuario);
     $stmt->execute();
     $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-    $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
     if ($usuario) {
+        $_SESSION['nombre_usuario'] = $usuario['nombre_usuario'];
         if (password_verify($contrasena_ingresada, $usuario['contrasena'])) {
             header('Location:../index.php');
         } else {

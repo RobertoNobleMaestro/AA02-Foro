@@ -2,7 +2,7 @@
 CREATE DATABASE bd_foro;
 USE bd_foro;
 CREATE TABLE tbl_usuarios (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
     nombre_real VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
@@ -22,7 +22,7 @@ CREATE TABLE tbl_preguntas (
 
 -- Tabla de tbl_respuestas
 CREATE TABLE tbl_respuestas (
-    id_repuestas INT AUTO_INCREMENT PRIMARY KEY,
+    id_respuestas INT AUTO_INCREMENT PRIMARY KEY,
     pregunta_id INT NOT NULL, 
     usuario_id INT NOT NULL,  
     contenido TEXT NOT NULL,
@@ -31,11 +31,11 @@ CREATE TABLE tbl_respuestas (
 
 -- Claves foráneas
 ALTER TABLE tbl_preguntas
-ADD CONSTRAINT fk_preguntas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id) ON DELETE CASCADE;
+ADD CONSTRAINT fk_preguntas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id_usuario) ON DELETE CASCADE;
 
 ALTER TABLE tbl_respuestas
-ADD CONSTRAINT fk_respuestas_pregunta FOREIGN KEY (pregunta_id) REFERENCES tbl_preguntas(id) ON DELETE CASCADE,
-ADD CONSTRAINT fk_respuestas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id) ON DELETE CASCADE;
+ADD CONSTRAINT fk_respuestas_pregunta FOREIGN KEY (pregunta_id) REFERENCES tbl_preguntas(id_preguntas) ON DELETE CASCADE,
+ADD CONSTRAINT fk_respuestas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id_usuario) ON DELETE CASCADE;
 
 -- tbl_usuarios
 INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena) VALUES
@@ -47,7 +47,7 @@ INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena) VALUES
 
 -- tbl_preguntas
 INSERT INTO tbl_preguntas (titulo, descripcion, etiquetas, usuario_id) VALUES
-('¿Cómo hacer un SELECT en MySQL?', 'Estoy aprendiendo MySQL y necesito ayuda para seleccionar datos.', 'MySQL,SQL', 1),
+('¿Cómo hacer un SELECT en MySQL?', 'Eddstoy aprendiendo MySQL y necesito ayuda para seleccionar datos.', 'MySQL,SQL', 1),
 ('¿Qué es una clave foránea?', 'No entiendo bien cómo funcionan las claves foráneas en una base de datos relacional.', 'SQL,Bases de datos', 2),
 ('Problemas con CSS en navegadores antiguos', 'Mi sitio no se ve bien en IE. ¿Qué puedo hacer?', 'CSS,HTML', 3),
 ('Uso de variables en PHP', '¿Cómo se declaran y usan variables en PHP?', 'PHP,Programación', 4),
