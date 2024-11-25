@@ -65,15 +65,15 @@
             <div class="lista-preguntas">
                 <?php if(isset($_POST['btn_crear_pregunta'])){ ?>
                     <h2>Formulario creación preguntas</h2>
-                    <form action="" method="post">
+                    <form action="./php/creación_pregunta.php" method="post">
                         <label for="titulo">Título:</label>
-                        <input type="text" id="titulo" name="titulo">
+                        <input type="text" id="titulo" name="titulo" required>
                         <br><br>
                         <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion"></textarea>
+                        <textarea id="descripcion" name="descripcion" required></textarea>
                         <br><br>
-                        <button name="enviar_pregunta">Enviar pregunta</button>
-                        <button><a href="./index.php">Eliminar pregunta</a></button>
+                        <button name="enviar_pregunta" type="submit">Enviar pregunta</button>
+                        <button type="button" onclick="window.location.href='./index.php'">Cancelar</button>
                     </form>
                 <?php } ?>
             </div>
