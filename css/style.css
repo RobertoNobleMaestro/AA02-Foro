@@ -33,7 +33,33 @@ body {
     padding: 5px;
     width: 200px;
 }
+button {
+    width: fit-content;
+    padding: 12px;
+    background-color: #d30000;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
+button:hover {
+    background-color: #b50000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(255, 0, 0, 0.5);
+}
 
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(255, 0, 0, 0.5);
+}
 .barra-navegacion .barra-busqueda button,
 .barra-navegacion .acciones-usuario button {
     background-color: white;
@@ -70,7 +96,7 @@ body {
 .seccion-preguntas {
     width: 50%;
     margin-right: 20px;
-    height: 100vh; /* O el valor adecuado para tu diseño */
+    height: 80vh; /* O el valor adecuado para tu diseño */
     overflow-y: auto;
 }
 
