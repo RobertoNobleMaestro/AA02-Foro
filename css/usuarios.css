@@ -75,7 +75,34 @@ body {
     border-radius: 5px;
 }
 
-/* Cuerpo de usuario */
+/* Diseño de contenido de usuario */
+.usuario-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Contenedor de la foto de perfil */
+.foto-perfil {
+    flex-shrink: 0; /* Evita que la imagen se reduzca */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden; /* Para que la imagen quede circular */
+    border: 2px solid rgb(255, 38, 38);
+}
+
+.foto-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que no se deforme */
+}
+
+/* Información de usuario */
+.usuario-info {
+    flex-grow: 1;
+}
+
 .usuario-body p {
     margin: 10px 0;
     color: #555;

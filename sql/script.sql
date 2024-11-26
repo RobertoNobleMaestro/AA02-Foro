@@ -39,25 +39,22 @@ ADD CONSTRAINT fk_respuestas_pregunta FOREIGN KEY (pregunta_id) REFERENCES tbl_p
 ADD CONSTRAINT fk_respuestas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id_usuario) ON DELETE CASCADE;
 
 -- tbl_usuarios
-INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena) VALUES
-('luis78', 'Luis Hernández', 'luis@example.com', 'contrasena6'),
-('sofia91', 'Sofía Rodríguez', 'sofia@example.com', 'contrasena7'),
-('daniel45', 'Daniel González', 'daniel@example.com', 'contrasena8'),
-('isabel67', 'Isabel Díaz', 'isabel@example.com', 'contrasena9'),
-('fernando89', 'Fernando Moreno', 'fernando@example.com', 'contrasena10'),
-('carlos23', 'Carlos López', 'carlos@example.com', 'contrasena11'),
-('maria56', 'María García', 'maria@example.com', 'contrasena12'),
-('juan90', 'Juan Pérez', 'juan@example.com', 'contrasena13'),
-('ana34', 'Ana Rodríguez', 'ana@example.com', 'contrasena14'),
-('pedro67', 'Pedro Hernández', 'pedro@example.com', 'contrasena15'),
-('laura89', 'Laura Díaz', 'laura@example.com', 'contrasena16'),
-('manuel45', 'Manuel González', 'manuel@example.com', 'contrasena17'),
-('cristina98', 'Cristina Moreno', 'cristina@example.com', 'contrasena18'),
-('raul21', 'Raúl Sánchez', 'raul@example.com', 'contrasena19'),
-('evelyn76', 'Evelyn Martínez', 'evelyn@example.com', 'contrasena20'),
-('usuarioNuevo', 'Nombre del usuario nuevo', 'nuevo@example.com', 'contrasenaNueva'),
-('usuario21', 'Nombre del usuario 21', 'usuario21@example.com', 'contrasena21'),
-('usuario22', 'Nombre del usuario 22', 'usuario22@example.com', 'contrasena22');
+INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena, random) VALUES
+('juan90', 'Juan Pérez', 'juan@example.com', 'contrasena7','2.png'),
+('maria23', 'María García', 'maria@example.com', 'contrasena8','3.png'),
+('pedro45', 'Pedro López', 'pedro@example.com', 'contrasena9','4.png'),
+('ana56', 'Ana Rodríguez', 'ana@example.com', 'contrasena10','5.png'),
+('carlos78', 'Carlos Hernández', 'carlos@example.com', 'contrasena11','6.png'),
+('laura90', 'Laura Martínez', 'laura@example.com', 'contrasena12','7.png'),
+('diego23', 'Diego Sánchez', 'diego@example.com', 'contrasena13','8.png'),
+('sofia45', 'Sofía Gómez', 'sofia@example.com', 'contrasena14','9.png'),
+('manuel56', 'Manuel González', 'manuel@example.com', 'contrasena15','10.png'),
+('isabel78', 'Isabel Fernández', 'isabel@example.com', 'contrasena16','11.png'),
+('rafael90', 'Rafael Díaz', 'rafael@example.com', 'contrasena17','12.png'),
+('cristina23', 'Cristina Moreno', 'cristina@example.com', 'contrasena18','13.png'),
+('alberto45', 'Alberto Álvarez', 'alberto@example.com', 'contrasena19','14.png'),
+('beatriz56', 'Beatriz Castro', 'beatriz@example.com', 'contrasena20','15.png'),
+('fernando78', 'Fernando Rubio', 'fernando@example.com', 'contrasena21','16.png');
 
 -- -- tbl_preguntas
 INSERT INTO tbl_preguntas (titulo, descripcion, etiquetas, usuario_id) VALUES
