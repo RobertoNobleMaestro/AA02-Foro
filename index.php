@@ -16,10 +16,10 @@
         <div>
             <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
         </div>
-        <div class="barra-busqueda">
+        <form method="POST" class="barra-busqueda">
         <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
         <button type="submit" name="btn_buscar">Buscar</button>
-        </div>
+        </form>
         <?php
         if (!isset($_SESSION['nombre_usuario'])) {
         echo'
