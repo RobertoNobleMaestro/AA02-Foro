@@ -6,7 +6,8 @@ CREATE TABLE tbl_usuarios (
     nombre_usuario VARCHAR(50) UNIQUE NOT NULL,
     nombre_real VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    contrasena VARCHAR(255) NOT NULL, 
+    contrasena VARCHAR(255) NOT NULL,
+    random VARCHAR(255) NULL,
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -58,7 +59,7 @@ INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena) VALUES
 ('usuario21', 'Nombre del usuario 21', 'usuario21@example.com', 'contrasena21'),
 ('usuario22', 'Nombre del usuario 22', 'usuario22@example.com', 'contrasena22');
 
--- tbl_preguntas
+-- -- tbl_preguntas
 INSERT INTO tbl_preguntas (titulo, descripcion, etiquetas, usuario_id) VALUES
 ('¿Cómo hacer un SELECT en MySQL?', 'Eddstoy aprendiendo MySQL y necesito ayuda para seleccionar datos.', 'MySQL,SQL', 1),
 ('¿Qué es una clave foránea?', 'No entiendo bien cómo funcionan las claves foráneas en una base de datos relacional.', 'SQL,Bases de datos', 2),
@@ -71,7 +72,7 @@ INSERT INTO tbl_preguntas (titulo, descripcion, etiquetas, usuario_id) VALUES
 ('Problemas con subconsultas en SQL', 'Tengo problemas para entender cómo funcionan las subconsultas.', 'SQL,Bases de datos', 4),
 ('Diferencias entre INNER JOIN y OUTER JOIN', '¿Cuándo debería usar cada tipo de JOIN en SQL?', 'SQL,MySQL', 5);
 
--- tbl_respuestas
+-- -- tbl_respuestas
 INSERT INTO tbl_respuestas (pregunta_id, usuario_id, contenido) VALUES
 (1, 2, 'Puedes usar SELECT * FROM tabla para seleccionar todos los datos.'),
 (1, 3, 'Recomiendo especificar las columnas en lugar de usar * para mejor rendimiento.'),
