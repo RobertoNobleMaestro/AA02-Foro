@@ -29,7 +29,7 @@
         </div>
         </header>';
         } else {
-            echo '<div class="acciones-usuario">bienvenido ' . $_SESSION['nombre_usuario']. '  ' . '<button><a href="./php/cerrar_session.php">cerrar session</a></button> </div>';
+            echo '<div class="acciones-usuario">bienvenido ' . $_SESSION['nombre_usuario']. '  ' . '<button><a href="./php/cerrar_session.php">Cerrar sesion</a></button> </div>';
         }
         ?>
     </header>
@@ -67,13 +67,13 @@
                     <h2>Formulario creación preguntas</h2>
                     <form action="./php/creación_pregunta.php" method="post">
                         <label for="titulo">Título:</label>
-                        <input type="text" id="titulo" name="titulo" required>
+                        <input type="text" id="titulo" name="titulo">
                         <br><br>
                         <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion" required></textarea>
+                        <textarea id="descripcion" name="descripcion"></textarea>
                         <br><br>
-                        <button name="enviar_pregunta" type="submit">Enviar pregunta</button>
-                        <button type="button" onclick="window.location.href='./index.php'">Cancelar</button>
+                        <button name="enviar_pregunta">Enviar pregunta</button>
+                        <button><a href="./index.php">Eliminar pregunta</a></button>
                     </form>
                 <?php } ?>
             </div>
@@ -94,43 +94,89 @@
                 ?>
                 <hr>
                 <?php
-                    
-                    require_once "./php/conexion.php";
+                require_once "./php/conexion.php";
 
-                    $sql = "SELECT 
-                            p.id_preguntas AS pregunta_id, 
-                            p.titulo, 
-                            p.descripcion, 
-                            p.etiquetas, 
-                            p.usuario_id, 
-                            p.fecha_publicacion, 
-                            u.nombre_usuario, 
-                            COUNT(r.id_respuestas) AS numero_respuestas 
-                        FROM tbl_preguntas p
-                        inner JOIN tbl_usuarios u ON p.usuario_id = u.id_usuario
-                        inner JOIN tbl_respuestas r ON r.pregunta_id = p.id_preguntas
-                        GROUP BY p.id_preguntas
-                        ORDER BY p.fecha_publicacion DESC
-                    ";
+                // Consultar todas las preguntas con conteo de respuestas
+                $sql = "SELECT 
+                    p.id_preguntas AS pregunta_id, 
+                    p.titulo, 
+                    p.descripcion, 
+                    p.etiquetas, 
+                    p.usuario_id, 
+                    p.fecha_publicacion, 
+                    u.nombre_usuario, 
+                    COUNT(r.id_respuestas) AS numero_respuestas 
+                FROM tbl_preguntas p
+                INNER JOIN tbl_usuarios u ON p.usuario_id = u.id_usuario
+                LEFT JOIN tbl_respuestas r ON r.pregunta_id = p.id_preguntas
+                GROUP BY p.id_preguntas
+                ORDER BY p.fecha_publicacion DESC";
+                $stmt = $conexion->prepare($sql);
+                $stmt->execute();
+                $preguntas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-                    $stmt = $conexion->prepare($sql);
-                    $stmt->execute();
-                    $preguntas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                // Verificar si hay preguntas
+                if (count($preguntas) > 0) {
+                    foreach ($preguntas as $pregunta) {
+                        echo "<div class='elemento-pregunta'>";
+                        echo "<h3>" . $pregunta['titulo'] . "</h3>";
+                        echo "<p>Preguntado por: " . $pregunta['nombre_usuario'] . "</p>";
+                        echo "<p>Número de respuestas: " . $pregunta['numero_respuestas'] . "</p>";
+                        echo "<p>Fecha de publicación: " . $pregunta['fecha_publicacion'] . "</p>";
 
-                    if (count($preguntas) > 0) {
-                        foreach ($preguntas as $pregunta) {
-                            echo "<div class='elemento-pregunta'>";
-                            echo "<h3>" . $pregunta['titulo'] . "</h3>";
-                            echo "<p>Preguntado por: " . $pregunta['nombre_usuario'] . "</p>";
-                            echo "<p>Número de respuestas: " . $pregunta['numero_respuestas'] . "</p>";
-                            echo "<form method='POST' action='index.php?id=".$pregunta['pregunta_id'] ."'>";
-                                echo "<button type='submit' name='desplegar_preguntas'>Texto del botón</button>";
-                            echo "</form>";
+                        // Formulario para mostrar respuestas de la pregunta
+                        echo "<form method='GET' action='index.php'>";
+                        echo "<input type='hidden' name='id' value='" . $pregunta['pregunta_id'] . "'>";
+                        echo "<button type='submit' name='desplegar_preguntas'>Ver Respuestas</button>";
+                        echo "</form>";
+
+                        // Mostrar respuestas si la pregunta actual coincide con el ID seleccionado
+                        if (isset($_GET['id']) && $_GET['id'] == $pregunta['pregunta_id']) {
+                            $pregunta_id = $_GET['id'];
+
+                            // Consultar las respuestas de la pregunta seleccionada
+                            $sql_respuestas = "SELECT 
+                                r.id_respuestas,
+                                r.contenido,
+                                r.fecha_publicacion,
+                                u.nombre_usuario AS autor
+                            FROM 
+                                tbl_respuestas r
+                            INNER JOIN 
+                                tbl_usuarios u ON r.usuario_id = u.id_usuario
+                            WHERE 
+                                r.pregunta_id = :pregunta_id
+                            ORDER BY 
+                                r.fecha_publicacion ASC;
+                            ";
+                            $stmt_respuestas = $conexion->prepare($sql_respuestas);
+                            $stmt_respuestas->execute(['pregunta_id' => $pregunta_id]);
+                            $respuestas = $stmt_respuestas->fetchAll(PDO::FETCH_ASSOC);
+
+                            // Mostrar las respuestas si existen
+                            echo "<div class='respuestas'>";
+                            if (count($respuestas) > 0) {
+                                echo "<h4>Respuestas:</h4>";
+                                foreach ($respuestas as $respuesta) {
+                                    echo "<div class='elemento-respuesta'>";
+                                    echo "<p><strong>Respondido por: </strong>" . $respuesta['autor'] . "</p>";
+                                    echo "<p>" . $respuesta['contenido'] . "</p>";
+                                    echo "<p><strong>Fecha de publicacion: </strong>" . $respuesta['fecha_publicacion'] . "</p>";
+                                    echo "</div>";
+                                }
+                            } else {
+                                echo "<p>No hay respuestas para esta pregunta.</p>";
+                            }
+                            echo "</div>";
                         }
-                    } else {
-                        echo "No hay preguntas en la base de datos.";
+
+                        echo "</div>"; 
                     }
+                } else {
+                    echo "No hay preguntas en la base de datos.";
+                }
                 ?>
+
             </div>
         </section>
         <!-- Detalles de la pregunta -->
@@ -141,12 +187,6 @@
                 <div class="elemento-respuesta">
                     <h3>Respuestas</h3>
                     <p>Este es un ejemplo de una respuesta.</p>
-                    <?php
-                        if (isset($_GET['id'])) {
-                            $pregunta_id = $_GET['id']; 
-                            echo "Mostrando detalles para la pregunta con ID: " . $pregunta_id;
-                        }
-                    ?>
                     <span>Respondido por <strong>UsuarioExperto</strong></span>
                 </div>
             </div>

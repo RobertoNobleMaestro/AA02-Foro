@@ -15,7 +15,7 @@ CREATE TABLE tbl_preguntas (
     id_preguntas INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
     descripcion TEXT NOT NULL,
-    etiquetas VARCHAR(255) NULL, 
+    etiquetas VARCHAR(255), 
     usuario_id INT NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -23,7 +23,7 @@ CREATE TABLE tbl_preguntas (
 -- Tabla de tbl_respuestas
 CREATE TABLE tbl_respuestas (
     id_respuestas INT AUTO_INCREMENT PRIMARY KEY,
-    pregunta_id INT NOT NULL, 
+    pregunta_id INT NULL, 
     usuario_id INT NOT NULL,  
     contenido TEXT NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
