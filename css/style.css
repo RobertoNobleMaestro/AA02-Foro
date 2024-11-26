@@ -49,6 +49,7 @@ button {
 }
 a{
     text-decoration: none;
+    color: white;
 }
 button:hover {
     background-color: #b50000;
@@ -62,11 +63,7 @@ button:active {
 }
 .barra-navegacion .barra-busqueda button,
 .barra-navegacion .acciones-usuario button {
-    background-color: white;
-    color: #f48024;
-    border: none;
     padding: 5px 10px;
-    cursor: pointer;
 }
 
 /* Contenedor principal */
@@ -82,6 +79,8 @@ button:active {
     background-color: #eeeeee;
     border-radius: 10px;
     height: fit-content;
+    margin-right: 20px;
+
 }
 
 .barra-lateral ul {
@@ -113,16 +112,17 @@ button:active {
     margin: 20px;
 }
 
-.lista-preguntas .elemento-pregunta {
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+.elemento-pregunta {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
 .lista-preguntas .elemento-pregunta h3 {
     margin: 0;
 }
 
-.lista-preguntas .elemento-pregunta p {
+.lista-preguntas{
     margin: 5px 0;
     color: gray;
 }
@@ -174,4 +174,24 @@ button:active {
 
 .tabla-usuario th:last-child, .tabla-usuario td:last-child {
     border-right: none;
+}
+.elemento-respuesta{
+    background-color: #b50000;
+    width: fit-content;
+    color: white !important;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+/* Estilo para los títulos y el texto */
+.elemento-respuesta p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Resaltar el autor con color rojo */
+.elemento-respuesta p strong {
+    color: #e74c3c; /* Color rojo */
+    font-size: 18px;
 }

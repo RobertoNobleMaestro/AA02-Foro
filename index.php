@@ -48,14 +48,14 @@
                 <?php if(isset($_SESSION['nombre_usuario'])){ ?>
                     <li>
                         <form action="" method="post">
-                            <input type="submit" name="btn_crear_pregunta" value="Crear pregunta">
+                            <button type="submit" name="btn_crear_pregunta">Crear pregunta</button>
                         </form>
                     </li>
                 <?php }?>
                 <?php if(isset($_SESSION['nombre_usuario'])){ ?>
-                    <li>
-                        <input type="submit" value="Historial de preguntas">
-                    </li>
+                    <form action="" method="post">
+                        <button type="submit" name="btn_historial_preguntas">Historial de preguntas</button>
+                    </form>
                 <?php }?>
             </ul>
         </aside>
@@ -161,10 +161,11 @@
                                         foreach ($respuestas as $respuesta) {
                                             echo "<div class='elemento-respuesta'>";
                                             echo "<p><strong>Respondido por: </strong>" . htmlspecialchars($respuesta['autor']) . "</p>";
+                                            echo "<hr>";
                                             echo "<p>" . htmlspecialchars($respuesta['contenido']) . "</p>";
                                             echo "<p><strong>Fecha de publicación: </strong>" . htmlspecialchars($respuesta['fecha_publicacion']) . "</p>";
                                             echo "</div>";
-                                        }
+                                        }                                        
                                     } else {
                                         echo "<p>No hay respuestas para esta pregunta.</p>";
                                     }
@@ -207,18 +208,20 @@
                         // Verificar si hay preguntas
                         if (count($preguntas) > 0) {
                             foreach ($preguntas as $pregunta) {
-                                echo "<div class='elemento-pregunta'>";
+                                echo "<div class='elemento-pregunta' id='id" . $pregunta['pregunta_id'] . "'>";
                                 echo "<h3>" . htmlspecialchars($pregunta['titulo']) . "</h3>";
                                 echo "<p>Preguntado por: " . htmlspecialchars($pregunta['nombre_usuario']) . "</p>";
                                 echo "<p>Número de respuestas: " . $pregunta['numero_respuestas'] . "</p>";
                                 echo "<p>Fecha de publicación: " . htmlspecialchars($pregunta['fecha_publicacion']) . "</p>";
-                    
+                                
+                                
                                 // Formulario para mostrar respuestas de la pregunta
-                                echo "<form method='GET' action='index.php'>";
-                                echo "<input type='hidden' name='id' value='" . $pregunta['pregunta_id'] . "'>";
+                                echo "<form method='GET' action='#id" . $pregunta['pregunta_id'] . "'>";
+                                echo "<input type='hidden' name='id' id='id" . $pregunta['pregunta_id'] . "' value='" . $pregunta['pregunta_id'] . "'>";
                                 echo "<button type='submit' name='desplegar_preguntas'>Ver Respuestas</button>";
                                 echo "</form>";
-                    
+                                echo "</div>";
+                                
                                 // Mostrar respuestas si la pregunta actual coincide con el ID seleccionado
                                 if (isset($_GET['id']) && $_GET['id'] == $pregunta['pregunta_id']) {
                                     $pregunta_id = $_GET['id'];
