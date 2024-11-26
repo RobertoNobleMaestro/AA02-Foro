@@ -64,13 +64,20 @@
                 if (count($usuarios) > 0) {
                     foreach ($usuarios as $usuario) {
                         echo "<div class='usuario-card'>";
-                        echo "<div class='usuario-header'>";
-                        echo "<h3>" . htmlspecialchars($usuario['nombre_usuario']) . "</h3>";
-                        echo "</div>";
-                        echo "<div class='usuario-body'>";
-                        echo "<p><strong>Nombre real:</strong> " . htmlspecialchars($usuario['nombre_real']) . "</p>";
-                        echo "<p><strong>Email:</strong> " . htmlspecialchars($usuario['email']) . "</p>";
-                        echo "</div>";
+                            echo "<div class='usuario-content'>";
+                                echo "<div class='foto-perfil'>";
+                                    echo "<img src='./img/" . htmlspecialchars($usuario['random']) . "' alt='Foto de perfil'>";
+                                echo "</div>";
+                                echo "<div class='usuario-info'>";
+                                    echo "<div class='usuario-header'>";
+                                        echo "<h3>" . htmlspecialchars($usuario['nombre_usuario']) . "</h3>";
+                                    echo "</div>";
+                                    echo "<div class='usuario-body'>";
+                                        echo "<p><strong>Nombre real:</strong> " . htmlspecialchars($usuario['nombre_real']) . "</p>";
+                                        echo "<p><strong>Email:</strong> " . htmlspecialchars($usuario['email']) . "</p>";
+                                    echo "</div>";
+                                echo "</div>";
+                            echo "</div>";
                         echo "</div>";
                     }
                 } else {
