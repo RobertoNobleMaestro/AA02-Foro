@@ -54,7 +54,7 @@
                 <?php }?>
                 <?php if(isset($_SESSION['nombre_usuario'])){ ?>
                     <form>
-                        <button type="submit" name="btn_historial_preguntas"><a href="./historial.php?id=<?php echo $_SESSION['id_usuario']; ?>">Historial de preguntas</a></button>
+                        <button type="submit" name="btn_historial_preguntas"><a href="./historial.php">Historial de preguntas</a></button>
                     </form>
                 <?php }?>
             </ul>
@@ -62,21 +62,6 @@
 
         <!-- Sección de preguntas -->
         <section class="seccion-preguntas">
-            <div class="lista-preguntas">
-                <?php if(isset($_POST['btn_crear_pregunta'])){ ?>
-                    <h2>Formulario creación preguntas</h2>
-                    <form action="./php/creación_pregunta.php" method="post">
-                        <label for="titulo">Título:</label>
-                        <input type="text" id="titulo" name="titulo">
-                        <br><br>
-                        <label for="descripcion">Descripción:</label>
-                        <textarea id="descripcion" name="descripcion"></textarea>
-                        <br><br>
-                        <button name="enviar_pregunta">Enviar pregunta</button>
-                        <button><a href="./index.php">Eliminar pregunta</a></button>
-                    </form>
-                <?php } ?>
-            </div>
             <div class="lista-preguntas">
                 <h2>Preguntas</h2>
                 <?php
@@ -274,18 +259,6 @@
                 }
                 ?>
 
-            </div>
-        </section>
-        <!-- Detalles de la pregunta -->
-        <section class="detalles-pregunta">
-            <h2>Título de la pregunta</h2>
-            <p>Aquí aparecerán todos los detalles de la pregunta seleccionada.</p>
-            <div class="respuestas">
-                <div class="elemento-respuesta">
-                    <h3>Respuestas</h3>
-                    <p>Este es un ejemplo de una respuesta.</p>
-                    <span>Respondido por <strong>UsuarioExperto</strong></span>
-                </div>
             </div>
         </section>
     </main>
