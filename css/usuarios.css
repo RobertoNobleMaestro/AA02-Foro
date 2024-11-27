@@ -12,7 +12,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* background-color: #edc19d; */
     background-color: rgb(255, 38, 38);
     padding: 10px 20px;
     color: white;
@@ -40,6 +39,63 @@ body {
     border: none;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+/* Barra lateral */
+.barra-lateral {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+    width: 240px; /* Tamaño adecuado para la barra lateral */
+    height: 100vh; /* Asegura que la barra lateral ocupe toda la altura */
+    box-sizing: border-box;
+    position: sticky;
+    top: 0; /* Fija la barra lateral */
+    overflow-y: auto; /* Hace que se pueda desplazar si es necesario */
+}
+
+.barra-lateral ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.barra-lateral li {
+    margin: 20px 0;
+}
+
+.barra-lateral li a {
+    text-decoration: none;
+    color: #333; /* Color de los enlaces */
+    font-size: 16px;
+    display: block;
+    padding: 12px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.barra-lateral li a:hover {
+    background-color: #0079d3; /* Color de fondo cuando se pasa el mouse */
+    color: white; /* Cambio de color del texto al pasar el cursor */
+    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
+}
+
+.barra-lateral .logo-imagen {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Estilo del encabezado de la barra lateral */
+.barra-lateral .barra-header h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
 }
 
 /* Contenedor de las tarjetas */
@@ -142,10 +198,38 @@ body {
     .usuarios-container {
         grid-template-columns: repeat(2, 1fr); /* 2 columnas */
     }
+    .barra-lateral {
+        width: 200px; /* Reducir el ancho de la barra lateral en pantallas más pequeñas */
+        padding: 20px;
+    }
+
+    .barra-lateral li a {
+        font-size: 14px; /* Reducir el tamaño del texto en pantallas más pequeñas */
+    }
 }
 
 @media (max-width: 480px) {
     .usuarios-container {
         grid-template-columns: 1fr; /* 1 columna */
+    }
+    .barra-lateral {
+        width: 100%; /* Barra lateral ocupa todo el ancho en dispositivos muy pequeños */
+        height: auto; /* Altura ajustable */
+        padding: 15px;
+    }
+
+    .barra-lateral ul {
+        display: flex;
+        flex-direction: row; /* Disposición horizontal de los elementos */
+        justify-content: space-around;
+    }
+
+    .barra-lateral li {
+        margin: 0;
+    }
+
+    .barra-lateral li a {
+        font-size: 12px; /* Ajuste del tamaño de fuente */
+        padding: 8px 15px; /* Ajuste de padding */
     }
 }
