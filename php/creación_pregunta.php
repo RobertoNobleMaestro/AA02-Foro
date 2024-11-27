@@ -33,24 +33,7 @@
         if (!$stmtPregunta->execute()) {
             throw new Exception("Error al insertar la pregunta: " . implode(", ", $stmtPregunta->errorInfo()));
         }
-    
-        // // Obtener el ID de la pregunta recién insertada
-        // $pregunta_id = $conexion->lastInsertId();
-    
-        // // Insertar una respuesta en blanco asociada a la pregunta
-        // $contenido = ''; // Respuesta en blanco
-        // $stmtRespuesta = $conexion->prepare(
-        //     "INSERT INTO tbl_respuestas (pregunta_id, usuario_id, contenido) 
-        //      VALUES (:pregunta_id, :usuario_id, :contenido)"
-        // );
-        // $stmtRespuesta->bindParam(':pregunta_id', $pregunta_id);
-        // $stmtRespuesta->bindParam(':usuario_id', $usuario_id);
-        // $stmtRespuesta->bindParam(':contenido', $contenido);
-    
-        // if (!$stmtRespuesta->execute()) {
-        //     throw new Exception("Error al insertar la respuesta: " . implode(", ", $stmtRespuesta->errorInfo()));
-        // }
-    
+
         // Confirmar transacción
         $conexion->commit();
     

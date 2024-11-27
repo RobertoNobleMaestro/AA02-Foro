@@ -86,10 +86,13 @@ input:focus {
     display: flex;
     margin: 20px;
 }
-
+.detalles-pregunta{
+    width: 30%;
+}
 .barra-lateral,
 .detalles-pregunta {
     padding-left: 20px;
+    padding: 15px;
     background-color: #eeeeee;
     border-radius: 10px;
     height: fit-content;
@@ -99,7 +102,6 @@ input:focus {
     width: 20%;
     margin-right: 20px;
 }
-
 .barra-lateral ul {
     list-style: none;
     padding: 0;
@@ -108,7 +110,11 @@ input:focus {
 .barra-lateral li {
     margin: 10px 0;
 }
+textarea{
+    width: 100%;
+    height: 100px;
 
+}
 .seccion-preguntas {
     width: 50%;
     margin-right: 20px;
@@ -141,7 +147,7 @@ input:focus {
 
 .detalles-pregunta .respuestas .elemento-respuesta {
     border-top: 1px solid #ddd;
-    padding: 10px 0;
+    padding: 10px;
 }
 
 .tabla-usuario {
