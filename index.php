@@ -16,7 +16,7 @@
         <div>
             <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
         </div>
-        <form method="POST" class="barra-busqueda">
+        <form method="POST" class="barra-busqueda botones-form">
         <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
         <button type="submit" name="btn_buscar">Buscar</button>
         </form>
@@ -105,7 +105,8 @@
                             p.titulo, 
                             p.descripcion, 
                             p.etiquetas, 
-                            p.usuario_id, 
+                            p.usuario_id,
+                            u.random, 
                             p.fecha_publicacion, 
                             u.nombre_usuario, 
                             COUNT(r.id_respuestas) AS numero_respuestas
@@ -124,15 +125,14 @@
                         foreach ($preguntas as $pregunta) {
                             echo "<div class='elemento-pregunta' id='id" . $pregunta['pregunta_id'] . "'>";
                             echo "<h3>" . htmlspecialchars($pregunta['titulo']) . "</h3>";
-                            echo "<p>Preguntado por: " . htmlspecialchars($pregunta['nombre_usuario']) . "</p>";
-                            echo "<p>Número de respuestas: " . $pregunta['numero_respuestas'] . "</p>";
-                            echo "<p>Fecha de publicación: " . htmlspecialchars($pregunta['fecha_publicacion']) . "</p>";
-
+                            echo "<p class='content-perfil'><img  class='foto-perfil' src='./img/" . htmlspecialchars($pregunta['random']) . "' alt='Foto de perfil'>" . htmlspecialchars($pregunta['nombre_usuario']) . "</p>";
+                            echo "<p>" . htmlspecialchars($pregunta['descripcion']) . "</p>";
+                            echo "<p><strong>Fecha de publicación: </strong>" . htmlspecialchars($pregunta['fecha_publicacion']) . "</p>";
                             // Formularios para mostrar respuestas o responder
-                            echo "<form method='GET' action='#id" . $pregunta['pregunta_id'] . "'>";
+                            echo "<form class='botones-form' method='GET' action='#id" . $pregunta['pregunta_id'] . "'>";
                             echo "<input type='hidden' name='id' value='" . $pregunta['pregunta_id'] . "'>";
-                            echo "<button type='submit' name='desplegar_preguntas' style='margin-right: 10px;'>Ver Respuestas</button>";
-                            echo "<button type='submit' name='responder_preguntas'>Responder</button>";
+                            echo "<button type='submit' class='boton-comentarios' name='desplegar_preguntas' style='margin-right: 10px;'><img src='./img/comentarios.svg' style='width: 20px;'>"  . $pregunta['numero_respuestas'] . "</button>";
+                            echo "<button type='submit' class='boton-comentarios' name='responder_preguntas' style='width: 110px;';'>Responder</button>";
                             echo "</form>";
 
                             // Mostrar respuestas si esta pregunta está seleccionada
@@ -142,6 +142,7 @@
                                     SELECT 
                                         r.id_respuestas, 
                                         r.contenido, 
+                                        u.random,
                                         r.fecha_publicacion, 
                                         u.nombre_usuario AS autor
                                     FROM tbl_respuestas r
@@ -151,13 +152,15 @@
                                 $stmt_respuestas = $conexion->prepare($sql_respuestas);
                                 $stmt_respuestas->execute(['pregunta_id' => $pregunta_id]);
                                 $respuestas = $stmt_respuestas->fetchAll(PDO::FETCH_ASSOC);
-
+                                echo "<br>";
                                 echo "<div class='respuestas'>";
                                 if (count($respuestas) > 0) {
-                                    echo "<h4>Respuestas:</h4>";
+                                    echo "<h3>Respuestas:</h3>";
+                                    echo "<br>";
+                                    echo "<br>";
                                     foreach ($respuestas as $respuesta) {
                                         echo "<div class='elemento-respuesta'>";
-                                        echo "<p><strong>Respondido por: </strong>" . htmlspecialchars($respuesta['autor']) . "</p>";
+                                        echo "<p class='content-perfil'><img  class='foto-perfil' src='./img/" . htmlspecialchars($respuesta['random']) . "' alt='Foto de perfil'>" . htmlspecialchars($respuesta['autor']) . "</p>";
                                         echo "<p>" . htmlspecialchars($respuesta['contenido']) . "</p>";
                                         echo "<p><strong>Fecha de publicación: </strong>" . htmlspecialchars($respuesta['fecha_publicacion']) . "</p>";
                                         echo "</div>";
