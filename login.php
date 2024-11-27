@@ -18,10 +18,11 @@
             <div class="form-item">
             <label for="contrasena">Contraseña <span>*</span></label>
             <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+            </div>
             <div class="form-item">
             <br><br>
             <a href="./registrar.php" class="enlace-registrar">¿Es tu primera vez en StackOverflow? Regístrate</a>
-            
+            </div>
             <button type="submit" class="boton-iniciar" name="btn_login">Iniciar sesión</button>
         </form>
     </div>
