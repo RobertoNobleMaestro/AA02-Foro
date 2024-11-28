@@ -48,6 +48,21 @@ try {
     $etiquetasQuery = "SELECT id_etiqueta, nombre_etiqueta FROM tbl_etiquetas";
     $etiquetasStmt = $conexion->query($etiquetasQuery);
     $etiquetas = $etiquetasStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Si se selecciona una pregunta, obtener las etiquetas asociadas a ella
+    $etiquetasAsignadas = [];
+    if (isset($_POST['ver_etiquetas'])) {
+        $pregunta_id = $_POST['pregunta_id'];
+        $queryEtiquetasAsignadas = "
+            SELECT e.id_etiqueta, e.nombre_etiqueta,tpe.titulo
+            FROM tbl_preguntas_etiquetas tpe
+            INNER JOIN tbl_etiquetas e ON tpe.id_etiqueta = e.id_etiqueta
+            WHERE tpe.id_pregunta = :pregunta_id";
+        $stmtEtiquetas = $conexion->prepare($queryEtiquetasAsignadas);
+        $stmtEtiquetas->bindParam(':pregunta_id', $pregunta_id, PDO::PARAM_INT);
+        $stmtEtiquetas->execute();
+        $etiquetasAsignadas = $stmtEtiquetas->fetchAll(PDO::FETCH_ASSOC);
+    }
 } catch (Exception $e) {
     echo "<p style='color:red;'>Error al cargar preguntas o etiquetas: " . $e->getMessage() . "</p>";
 }
@@ -76,12 +91,31 @@ try {
 
         <label for="etiquetas">Selecciona etiquetas:</label><br><br>
         <?php foreach ($etiquetas as $etiqueta): ?>
-            <input type="checkbox" name="etiquetas[]" value="<?= htmlspecialchars($etiqueta['id_etiqueta']) ?>" id="etiqueta_<?= htmlspecialchars($etiqueta['id_etiqueta']) ?>">
+            <input type="checkbox" name="etiquetas[]" value="<?= htmlspecialchars($etiqueta['id_etiqueta']) ?>" 
+                id="etiqueta_<?= htmlspecialchars($etiqueta['id_etiqueta']) ?>"
+                <?= isset($_POST['pregunta_id']) && in_array($etiqueta['id_etiqueta'], $etiquetasAsignadas) ? 'checked' : '' ?>>
             <label for="etiqueta_<?= htmlspecialchars($etiqueta['id_etiqueta']) ?>"><?= htmlspecialchars($etiqueta['nombre_etiqueta']) ?></label><br>
         <?php endforeach; ?>
         <br><br>
+
         <button type="submit">Asignar etiquetas</button>
+        <br><br>
+
+        <!-- Botón para ver etiquetas asignadas a la pregunta seleccionada -->
+        <button type="submit" name="ver_etiquetas">Ver etiquetas de la pregunta</button>
     </form>
+
+    <!-- Mostrar las etiquetas asignadas a la pregunta seleccionada -->
+    <?php if (isset($_POST['ver_etiquetas']) && !empty($etiquetasAsignadas)): ?>
+        <h3>Etiquetas asignadas a la pregunta seleccionada:</h3>
+        <ul>
+            <?php foreach ($etiquetasAsignadas as $etiqueta): ?>
+                <li><?= htmlspecialchars($etiqueta['nombre_etiqueta']) ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php elseif (isset($_POST['ver_etiquetas'])): ?>
+        <p>No hay etiquetas asignadas a esta pregunta.</p>
+    <?php endif; ?>
 
     <h2>Preguntas con Etiquetas</h2>
     <?php
