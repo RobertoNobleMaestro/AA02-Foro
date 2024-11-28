@@ -11,14 +11,25 @@ CREATE TABLE tbl_usuarios (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabla de tbl_etiquetas
+CREATE TABLE tbl_etiquetas (
+    id_etiqueta INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_etiqueta VARCHAR(255) NOT NULL,
+    descripcion_etiqueta VARCHAR(255) NULL
+);
+
 -- Tabla de tbl_preguntas
 CREATE TABLE tbl_preguntas (
     id_preguntas INT AUTO_INCREMENT PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
-    descripcion TEXT NOT NULL,
-    etiquetas VARCHAR(255), 
+    descripcion TEXT NOT NULL, 
     usuario_id INT NOT NULL,
     fecha_publicacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tbl_preguntas_etiquetas (
+    id_pregunta INT NOT NULL,
+    id_etiqueta INT NOT NULL
 );
 
 -- Tabla de tbl_respuestas
@@ -31,12 +42,17 @@ CREATE TABLE tbl_respuestas (
 );
 
 -- Claves foráneas
-ALTER TABLE tbl_preguntas
-ADD CONSTRAINT fk_preguntas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id_usuario) ON DELETE CASCADE;
+ALTER TABLE tbl_preguntas_etiquetas
+ADD CONSTRAINT fk_preguntas_etiquetas_pregunta FOREIGN KEY (id_pregunta) REFERENCES tbl_preguntas(id_preguntas);
+
+ALTER TABLE tbl_preguntas_etiquetas
+ADD CONSTRAINT fk_preguntas_etiquetas_etiqueta FOREIGN KEY (id_etiqueta) REFERENCES tbl_etiquetas(id_etiqueta);
 
 ALTER TABLE tbl_respuestas
-ADD CONSTRAINT fk_respuestas_pregunta FOREIGN KEY (pregunta_id) REFERENCES tbl_preguntas(id_preguntas) ON DELETE CASCADE,
-ADD CONSTRAINT fk_respuestas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id_usuario) ON DELETE CASCADE;
+ADD CONSTRAINT fk_respuestas_pregunta FOREIGN KEY (pregunta_id) REFERENCES tbl_preguntas(id_preguntas);
+
+ALTER TABLE tbl_respuestas
+ADD CONSTRAINT fk_respuestas_usuario FOREIGN KEY (usuario_id) REFERENCES tbl_usuarios(id_usuario);
 
 -- tbl_usuarios
 INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena, random) VALUES
@@ -56,20 +72,31 @@ INSERT INTO tbl_usuarios (nombre_usuario, nombre_real, email, contrasena, random
 ('beatriz56', 'Beatriz Castro', 'beatriz@example.com', 'contrasena20','15.png'),
 ('fernando78', 'Fernando Rubio', 'fernando@example.com', 'contrasena21','16.png');
 
--- -- tbl_preguntas
-INSERT INTO tbl_preguntas (titulo, descripcion, etiquetas, usuario_id) VALUES
-('¿Cómo hacer un SELECT en MySQL?', 'Eddstoy aprendiendo MySQL y necesito ayuda para seleccionar datos.', 'MySQL,SQL', 1),
-('¿Qué es una clave foránea?', 'No entiendo bien cómo funcionan las claves foráneas en una base de datos relacional.', 'SQL,Bases de datos', 2),
-('Problemas con CSS en navegadores antiguos', 'Mi sitio no se ve bien en IE. ¿Qué puedo hacer?', 'CSS,HTML', 3),
-('Uso de variables en PHP', '¿Cómo se declaran y usan variables en PHP?', 'PHP,Programación', 4),
-('Errores comunes en JavaScript', '¿Cuáles son los errores más frecuentes al trabajar con JavaScript?', 'JavaScript,Errores', 5),
-('Validación de formularios con JavaScript', '¿Cómo implementar validación en el lado del cliente?', 'JavaScript,HTML', 1),
-('Buenas prácticas para estructuras de datos', '¿Qué prácticas recomiendan para manejar estructuras complejas?', 'Programación,Algoritmos', 2),
-('¿Qué es AJAX y para qué se utiliza?', 'Estoy empezando con tecnologías web y quiero saber más sobre AJAX.', 'AJAX,JavaScript', 3),
-('Problemas con subconsultas en SQL', 'Tengo problemas para entender cómo funcionan las subconsultas.', 'SQL,Bases de datos', 4),
-('Diferencias entre INNER JOIN y OUTER JOIN', '¿Cuándo debería usar cada tipo de JOIN en SQL?', 'SQL,MySQL', 5);
+-- tbl_etiquetas
+INSERT INTO tbl_etiquetas (nombre_etiqueta, descripcion_etiqueta) VALUES
+('SQL', 'Lenguaje de consulta de bases de datos'),
+('CSS', 'Lenguaje de estilos para la web'),
+('HTML', 'Lenguaje de marcado para la web'),
+('PHP', 'Lenguaje de programación para la web'),
+('JavaScript', 'Lenguaje de programación para la web'),
+('Programación', 'Desarrollo de software'),
+('AJAX', 'Tecnología para actualización de páginas web'),
+('Errores', 'Problemas comunes en la programación');
 
--- -- tbl_respuestas
+-- tbl_preguntas
+INSERT INTO tbl_preguntas (titulo, descripcion, usuario_id) VALUES
+('¿Cómo hacer un SELECT en MySQL?', 'Estoy aprendiendo MySQL y necesito ayuda para seleccionar datos.', 1),
+('¿Qué es una clave foránea?', 'No entiendo bien cómo funcionan las claves foráneas en una base de datos relacional.', 2),
+('Problemas con CSS en navegadores antiguos', 'Mi sitio no se ve bien en IE. ¿Qué puedo hacer?', 3),
+('Uso de variables en PHP', '¿Cómo se declaran y usan variables en PHP?', 4),
+('Errores comunes en JavaScript', '¿Cuáles son los errores más frecuentes al trabajar con JavaScript?', 5),
+('Validación de formularios con JavaScript', '¿Cómo implementar validación en el lado del cliente?', 1),
+('Buenas prácticas para estructuras de datos', '¿Qué prácticas recomiendan para manejar estructuras complejas?', 2),
+('¿Qué es AJAX y para qué se utiliza?', 'Estoy empezando con tecnologías web y quiero saber más sobre AJAX.', 3),
+('Problemas con subconsultas en SQL', 'Tengo problemas para entender cómo funcionan las subconsultas.', 4),
+('Diferencias entre INNER JOIN y OUTER JOIN', '¿Cuándo debería usar cada tipo de JOIN en SQL?', 5);
+
+-- tbl_respuestas
 INSERT INTO tbl_respuestas (pregunta_id, usuario_id, contenido) VALUES
 (1, 2, 'Puedes usar SELECT * FROM tabla para seleccionar todos los datos.'),
 (1, 3, 'Recomiendo especificar las columnas en lugar de usar * para mejor rendimiento.'),
@@ -82,3 +109,16 @@ INSERT INTO tbl_respuestas (pregunta_id, usuario_id, contenido) VALUES
 (8, 5, 'AJAX permite actualizar partes de la página sin recargarla.'),
 (9, 1, 'Una subconsulta es una consulta dentro de otra consulta, como en SELECT WHERE IN.'),
 (10, 2, 'INNER JOIN devuelve filas coincidentes en ambas tablas, mientras que OUTER JOIN incluye las no coincidentes.');
+
+-- tbl_preguntas_etiquetas
+INSERT INTO tbl_preguntas_etiquetas (id_pregunta, id_etiqueta) VALUES
+(1, 1),
+(2, 1),
+(3, 2),
+(4, 4),
+(5, 5),
+(6, 5),
+(7, 6),
+(8, 7),
+(9, 1),
+(10, 1);

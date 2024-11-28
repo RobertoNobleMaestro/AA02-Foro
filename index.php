@@ -42,9 +42,6 @@
                 <li>
                     <button><a href="./index.php">Preguntas</a></button>
                 </li>
-                <li>
-                    <button><a href="./usuarios.php">Usuarios</a></button>
-                </li>
                 <?php if(isset($_SESSION['nombre_usuario'])){ ?>
                     <li>
                         <form action="index.php" method="post">
@@ -57,6 +54,12 @@
                         <button type="submit" name="btn_historial_preguntas"><a href="./historial.php?id=<?php echo $_SESSION['id_usuario']; ?>">Historial de preguntas</a></button>
                     </form>
                 <?php }?>
+                <li>
+                    <button><a href="./usuarios.php">Usuarios</a></button>
+                </li>
+                <li>
+                    <button><a href="./etiquetas.php">Etiquetas</a></button>
+                </li>
             </ul>
         </aside>
 
@@ -64,18 +67,20 @@
         <section class="seccion-preguntas">
             <div class="lista-preguntas">
                 <?php if(isset($_POST['btn_crear_pregunta'])){ ?>
-                    <h2>Formulario creación preguntas</h2>
-                    <form action="./php/creación_pregunta.php" method="post" style="padding: 1%;">
-                        <label for="titulo">Título:</label>
-                        <input type="text" id="titulo" name="titulo">
-                        <br><br>
-                        <label for="descripcion">Descripción:</label>
-                        <br>
-                        <textarea id="descripcion" name="descripcion"></textarea>
-                        <br><br>
-                        <button name="enviar_pregunta">Enviar pregunta</button>
-                        <button><a href="./index.php">Eliminar pregunta</a></button>
-                    </form>
+                    <div class="creacion">
+                        <h2>Formulario creación preguntas</h2>
+                        <form action="./php/creación_pregunta.php" method="post" style="padding: 1%;">
+                            <label for="titulo">Título:</label>
+                            <input type="text" id="titulo" name="titulo">
+                            <br><br>
+                            <label for="descripcion">Descripción:</label>
+                            <br>
+                            <textarea id="descripcion" name="descripcion"></textarea>
+                            <br><br>
+                            <button name="enviar_pregunta">Enviar pregunta</button>
+                            <button><a href="./index.php">Eliminar pregunta</a></button>
+                        </form>
+                    </div>
                 <?php } ?>
             </div>
             <div class="lista-preguntas">
@@ -103,8 +108,7 @@
                         SELECT 
                             p.id_preguntas AS pregunta_id, 
                             p.titulo, 
-                            p.descripcion, 
-                            p.etiquetas, 
+                            p.descripcion,
                             p.usuario_id,
                             u.random, 
                             p.fecha_publicacion, 
@@ -125,8 +129,8 @@
                         foreach ($preguntas as $pregunta) {
                             echo "<div class='elemento-pregunta' id='id" . $pregunta['pregunta_id'] . "'>";
                             echo "<h3>" . htmlspecialchars($pregunta['titulo']) . "</h3>";
-                            echo "<p class='content-perfil'><img  class='foto-perfil' src='./img/" . htmlspecialchars($pregunta['random']) . "' alt='Foto de perfil'>" . htmlspecialchars($pregunta['nombre_usuario']) . "</p>";
                             echo "<p>" . htmlspecialchars($pregunta['descripcion']) . "</p>";
+                            echo "<p class='content-perfil'><img  class='foto-perfil' src='./img/" . htmlspecialchars($pregunta['random']) . "' alt='Foto de perfil'>" . htmlspecialchars($pregunta['nombre_usuario']) . "</p>";
                             echo "<p><strong>Fecha de publicación: </strong>" . htmlspecialchars($pregunta['fecha_publicacion']) . "</p>";
                             // Formularios para mostrar respuestas o responder
                             echo "<form class='botones-form' method='GET' action='#id" . $pregunta['pregunta_id'] . "'>";
