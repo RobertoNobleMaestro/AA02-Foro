@@ -90,9 +90,9 @@ require_once './php/conexion.php';
                                     echo "<form method='POST' action='./editar.php'>";
                                         echo "<input type='hidden' name='id' value='" . $pregunta['pregunta_id'] . "'>";
                                         echo "<label for='titulo'>Editar título:</label>";
-                                        echo "<input type='text' name='titulo' value='" . htmlspecialchars($pregunta['titulo']) . "' required>";
-                                        echo "<label for='descripcion'>Editar descripción:</label>";
-                                        echo "<textarea name='descripcion' required>" . htmlspecialchars($pregunta['descripcion']) . "</textarea>";
+                                        echo "<input type='text' name='titulo' value='" . htmlspecialchars($pregunta['titulo']) . "' required><br><br>";
+                                        echo "<label for='descripcion'>Editar descripción:</label><br>";
+                                        echo "<textarea name='descripcion' required>" . htmlspecialchars($pregunta['descripcion']) . "</textarea><br><br>";
                                         echo "<button type='submit'>Guardar cambios</button>";
                                     echo "</form>";
                                 } else {

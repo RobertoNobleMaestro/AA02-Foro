@@ -76,11 +76,18 @@ input {
     color: #333;
     transition: all 0.3s ease;
 }
+textarea{
+    width: 98.5%;
+    height: 100px;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #d0d0d0;
+}
 input:focus {
     border-color: #0079d3;
     outline: none;
     box-shadow: 0 0 6px rgba(0, 121, 211, 0.5);
-    transform: scale(1.02);
+    transform: scale(1);
 }
 .contenedor-principal {
     display: flex;
