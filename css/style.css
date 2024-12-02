@@ -7,6 +7,7 @@ body {
     overflow: hidden;
 }
 
+/* Barra de navegación */
 .barra-navegacion {
     display: flex;
     justify-content: space-between;
@@ -15,16 +16,6 @@ body {
     padding: 10px 20px;
     color: white;
     z-index: 9999;
-}
-
-.content-perfil{
-    display:flex; 
-    align-items: center;
-}
-
-.foto-perfil{
-    width: 30px;
-    padding-right: 10px;
 }
 
 .barra-navegacion .logo {
@@ -36,23 +27,58 @@ body {
     height: auto;
 }
 
-.barra-navegacion .barra-busqueda input {
-    padding: 5px;
-    width: 200px;
-    gap: 5px;
+/* Foto de perfil */
+.content-perfil {
+    display: flex;
+    align-items: center;
 }
 
-.creacion{
+.foto-perfil {
+    width: 30px;
+    padding-right: 10px;
+}
+
+/* Barra de búsqueda */
+.barra-navegacion .barra-busqueda {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Botón alineado a la derecha */
+    gap: 10px; /* Espaciado entre el input y el botón */
+}
+
+.barra-navegacion .barra-busqueda input {
+    padding: 5px;
+    flex-grow: 1; /* Permite que el input ocupe el espacio disponible */
+    max-width: 200px; /* Limita el tamaño máximo del input */
+    box-sizing: border-box;
+}
+
+.barra-navegacion .barra-busqueda button {
+    padding: 5px 10px;
+}
+
+/* Acciones de usuario */
+.barra-navegacion .acciones-usuario {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre el texto y el botón */
+}
+
+.barra-navegacion .acciones-usuario span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.barra-navegacion .acciones-usuario button {
+    margin-left: auto; /* Alinea el botón al lado derecho del texto */
+}
+
+.creacion {
     box-shadow: 10px rgba(0, 0, 0, 0.2);
 }
 
-.barra-navegacion .barra-busqueda button,
-.barra-navegacion .acciones-usuario button {
-    padding: 5px 10px;
-    display: flex;
-    
-}
-
+/* Estilos generales para botones */
 button {
     padding: 12px;
     display: flex;
@@ -69,21 +95,6 @@ button {
     align-items: center;
 }
 
-.boton-comentarios{
-    width: 70px;
-    background-color: lightgray;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-evenly;
-    border-radius: 20px;
-}
-
-a {
-    text-decoration: none;
-    color: white;
-}
-
 button:hover {
     background-color: #b50000;
     transform: translateY(-2px);
@@ -95,6 +106,28 @@ button:active {
     box-shadow: 0 3px 6px rgba(255, 0, 0, 0.5);
 }
 
+.botones-form{
+    display: flex;
+}
+
+.boton-comentarios {
+    width: 70px;
+    background-color: lightgray;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+/* Enlaces */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Inputs */
 input {
     width: 100%;
     box-sizing: border-box;
@@ -114,19 +147,28 @@ input:focus {
     transform: scale(1.02);
 }
 
+/* Áreas de texto */
+textarea {
+    width: 95%;
+    height: 100px;
+    border-radius: 6px;
+    padding: 10px;
+    border: 1px solid #d0d0d0;
+}
+
+/* Contenedor principal */
 .contenedor-principal {
     display: flex;
     margin: 20px;
 }
 
-.detalles-pregunta{
+.detalles-pregunta {
     width: 30%;
 }
 
 .barra-lateral,
 .detalles-pregunta {
     padding-left: 20px;
-    padding: 15px;
     background-color: #eeeeee;
     border-radius: 10px;
     height: fit-content;
@@ -146,12 +188,7 @@ input:focus {
     margin: 10px 0;
 }
 
-textarea{
-    width: 100%;
-    height: 100px;
-
-}
-
+/* Sección de preguntas */
 .seccion-preguntas {
     width: 50%;
     margin-right: 20px;
@@ -172,8 +209,8 @@ textarea{
     margin: 5px 0;
 }
 
-.botones-form{
-    display: flex;
+.lista-preguntas .elemento-pregunta h3 {
+    margin: 0;
 }
 
 .elemento-pregunta {
@@ -182,15 +219,26 @@ textarea{
     margin-bottom: 10px;
 }
 
-.lista-preguntas .elemento-pregunta h3 {
-    margin: 0;
-}
-
+/* Respuestas */
 .detalles-pregunta .respuestas .elemento-respuesta {
     border-top: 1px solid #ddd;
     padding: 10px;
 }
 
+.elemento-respuesta {
+    width: 90%;
+    color: rgb(0, 0, 0) !important;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.elemento-respuesta p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Tablas */
 .tabla-usuario {
     border-collapse: collapse;
     width: 100%;
@@ -226,19 +274,7 @@ textarea{
     border-right: none;
 }
 
-.elemento-respuesta {
-    width: 90%;
-    color: rgb(0, 0, 0) !important;
-    padding: 20px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.elemento-respuesta p {
-    font-size: 16px;
-    line-height: 1.6;
-}
-
-strong{
+/* Negritas */
+strong {
     color: #e74c3c;  
 }

@@ -16,21 +16,21 @@
         <div>
             <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
         </div>
-        <form method="POST" class="barra-busqueda botones-form">
-        <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
-        <button type="submit" name="btn_buscar">Buscar</button>
+        <form method="POST" class="barra-busqueda">
+            <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
+            <button type="submit" name="btn_buscar">Buscar</button>
         </form>
         <?php
-        if (!isset($_SESSION['nombre_usuario'])) {
-        echo'
-        <div class="acciones-usuario">
-            <button><a href="./login.php">Iniciar sesión</a></button>
-            <button><a href="./registrar.php">Crear cuenta</a></button>
-        </div>
-        </header>';
-        } else {
-            echo '<div class="acciones-usuario">bienvenido ' . $_SESSION['nombre_usuario']. '  ' . '<button><a href="./php/cerrar_session.php">Cerrar sesion</a></button> </div>';
-        }
+            if (!isset($_SESSION['nombre_usuario'])) {
+                echo '
+                <div class="acciones-usuario">
+                    <button><a href="./login.php">Iniciar sesión</a></button>
+                    <button><a href="./registrar.php">Crear cuenta</a></button>
+                </div>';
+            } else {
+                echo '<div class="acciones-usuario">Bienvenido ' . htmlspecialchars($_SESSION['nombre_usuario']) . '  
+                <button><a href="./php/cerrar_session.php">Cerrar sesión</a></button></div>';
+            }
         ?>
     </header>
     <!-- Contenido principal -->
@@ -135,7 +135,7 @@
                             // Formularios para mostrar respuestas o responder
                             echo "<form class='botones-form' method='GET' action='#id" . $pregunta['pregunta_id'] . "'>";
                             echo "<input type='hidden' name='id' value='" . $pregunta['pregunta_id'] . "'>";
-                            echo "<button type='submit' class='boton-comentarios' name='desplegar_preguntas' style='margin-right: 10px;'><img src='./img/comentarios.svg' style='width: 20px;'>"  . $pregunta['numero_respuestas'] . "</button>";
+                            echo "<button type='submit' class='boton-comentarios' name='desplegar_preguntas'><img src='./img/comentarios.svg' style='width: 20px;'>"  . $pregunta['numero_respuestas'] . "</button>";
                             echo "<button type='submit' class='boton-comentarios' name='responder_preguntas' style='width: 110px;';'>Responder</button>";
                             echo "</form>";
 
