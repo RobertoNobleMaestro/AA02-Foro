@@ -8,6 +8,10 @@ body {
 }
 
 /* Barra de navegación */
+.barra-navegacion-container {
+    position: relative; /* Contenedor de la barra */
+}
+
 .barra-navegacion {
     display: flex;
     justify-content: space-between;
@@ -16,13 +20,12 @@ body {
     padding: 10px 20px;
     color: white;
     z-index: 9999;
+    height: 60px; /* Ajusta la altura según sea necesario */
+    position: sticky;
+    top: 0; /* Fija la barra en la parte superior */
 }
 
-.barra-navegacion .logo {
-    font-size: 1.5em;
-}
-
-.logo-imagen {
+.barra-navegacion .logo-imagen {
     width: 200px;
     height: auto;
 }
@@ -41,64 +44,49 @@ body {
     cursor: pointer;
 }
 
-/* Barra lateral */
+/* Estilos para la barra lateral */
 .barra-lateral {
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    padding: 30px;
-    width: 240px; /* Tamaño adecuado para la barra lateral */
-    height: 100vh; /* Asegura que la barra lateral ocupe toda la altura */
-    box-sizing: border-box;
-    position: sticky;
-    top: 0; /* Fija la barra lateral */
-    overflow-y: auto; /* Hace que se pueda desplazar si es necesario */
+    width: 20%;
+    background-color: #eeeeee;
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .barra-lateral ul {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .barra-lateral li {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .barra-lateral li a {
-    text-decoration: none;
-    color: #333; /* Color de los enlaces */
-    font-size: 16px;
     display: block;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
     padding: 12px;
     border-radius: 6px;
+    text-align: center;
     transition: all 0.3s ease;
-    font-weight: bold;
 }
 
 .barra-lateral li a:hover {
-    background-color: #0079d3; /* Color de fondo cuando se pasa el mouse */
-    color: white; /* Cambio de color del texto al pasar el cursor */
-    transform: scale(1.05); /* Efecto de agrandamiento al pasar el cursor */
+    background-color: rgb(255, 38, 38);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.barra-lateral .logo-imagen {
-    width: 150px;
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
+.barra-lateral li a:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilo del encabezado de la barra lateral */
-.barra-lateral .barra-header h3 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Contenedor de las tarjetas */
+/* Estilo para la tarjeta de usuario */
 .usuarios-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columnas */
@@ -124,6 +112,7 @@ body {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilo del encabezado de cada tarjeta de usuario */
 .usuario-header h3 {
     background-color: rgb(255, 38, 38);
     color: white;
@@ -131,7 +120,7 @@ body {
     border-radius: 5px;
 }
 
-/* Diseño de contenido de usuario */
+/* Diseño del contenido del usuario */
 .usuario-content {
     display: flex;
     align-items: center;
@@ -191,45 +180,4 @@ body {
     font-size: 16px;
     font-weight: bold;
     color: #333;
-}
-
-/* Responsivo */
-@media (max-width: 768px) {
-    .usuarios-container {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
-    }
-    .barra-lateral {
-        width: 200px; /* Reducir el ancho de la barra lateral en pantallas más pequeñas */
-        padding: 20px;
-    }
-
-    .barra-lateral li a {
-        font-size: 14px; /* Reducir el tamaño del texto en pantallas más pequeñas */
-    }
-}
-
-@media (max-width: 480px) {
-    .usuarios-container {
-        grid-template-columns: 1fr; /* 1 columna */
-    }
-    .barra-lateral {
-        width: 100%; /* Barra lateral ocupa todo el ancho en dispositivos muy pequeños */
-        height: auto; /* Altura ajustable */
-        padding: 15px;
-    }
-
-    .barra-lateral ul {
-        display: flex;
-        flex-direction: row; /* Disposición horizontal de los elementos */
-        justify-content: space-around;
-    }
-
-    .barra-lateral li {
-        margin: 0;
-    }
-
-    .barra-lateral li a {
-        font-size: 12px; /* Ajuste del tamaño de fuente */
-        padding: 8px 15px; /* Ajuste de padding */
-    }
 }
