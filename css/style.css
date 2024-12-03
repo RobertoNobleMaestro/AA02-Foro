@@ -44,6 +44,7 @@ body {
     align-items: center;
     justify-content: flex-end; /* Botón alineado a la derecha */
     gap: 10px; /* Espaciado entre el input y el botón */
+    align-items: baseline;
 }
 
 .barra-navegacion .barra-busqueda input {
@@ -129,7 +130,7 @@ a {
 
 /* Inputs */
 input {
-    width: 100%;
+    width: 93%;
     box-sizing: border-box;
     padding: 12px;
     margin-bottom: 6px;
@@ -144,12 +145,12 @@ input:focus {
     border-color: #0079d3;
     outline: none;
     box-shadow: 0 0 6px rgba(0, 121, 211, 0.5);
-    transform: scale(1.02);
+    transform: scale(1);
 }
 
 /* Áreas de texto */
 textarea {
-    width: 95%;
+    width: 90%;
     height: 100px;
     border-radius: 6px;
     padding: 10px;
@@ -172,6 +173,7 @@ textarea {
     background-color: #eeeeee;
     border-radius: 10px;
     height: fit-content;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .barra-lateral {
@@ -212,7 +214,11 @@ textarea {
 .lista-preguntas .elemento-pregunta h3 {
     margin: 0;
 }
-
+.acciones-pregunta{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
 .elemento-pregunta {
     border: 1px solid #ddd;
     padding: 10px;

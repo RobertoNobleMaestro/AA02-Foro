@@ -15,7 +15,7 @@
     <header class="barra-navegacion-container">
         <div class="barra-navegacion">
             <div>
-                <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
+            <a href="./index.php"><img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo"></a>
             </div>
             <form method="POST" class="barra-busqueda">
                 <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
@@ -90,6 +90,7 @@
     </section>
     <!-- Paginación -->
     <div class="pagination">
+        <button><a href="./index.php">volver al inicio</a></button>
         <?php if ($paginaActual > 1): ?>
             <a href="?pagina=<?= $paginaActual - 1 ?>" class="btn">Anterior</a>
         <?php endif; ?>
