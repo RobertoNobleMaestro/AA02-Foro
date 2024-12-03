@@ -14,7 +14,7 @@
     <!-- Encabezado -->
     <header class="barra-navegacion">
         <div>
-            <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
+            <a href="./index.php"><img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo"></a>
         </div>
         <form method="POST" class="barra-busqueda">
             <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
@@ -57,9 +57,6 @@
                 <li>
                     <button><a href="./usuarios.php">Usuarios</a></button>
                 </li>
-                <li>
-                    <button><a href="./etiquetas.php">Etiquetas</a></button>
-                </li>
             </ul>
         </aside>
 
@@ -70,15 +67,17 @@
                     <div class="creacion">
                         <h2>Formulario creación preguntas</h2>
                         <form action="./php/creación_pregunta.php" method="post" style="padding: 1%;">
-                            <label for="titulo">Título:</label>
+                            <label for="titulo">Título:</label><br>
                             <input type="text" id="titulo" name="titulo">
                             <br><br>
                             <label for="descripcion">Descripción:</label>
                             <br>
                             <textarea id="descripcion" name="descripcion"></textarea>
                             <br><br>
-                            <button name="enviar_pregunta">Enviar pregunta</button>
-                            <button><a href="./index.php">Eliminar pregunta</a></button>
+                            <div class="acciones-pregunta">
+                                <button name="enviar_pregunta">Enviar pregunta</button>
+                                <button><a href="./index.php">Eliminar pregunta</a></button>
+                            </div>
                         </form>
                     </div>
                 <?php } ?>

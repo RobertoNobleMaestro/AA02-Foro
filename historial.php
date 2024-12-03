@@ -15,23 +15,23 @@ require_once './php/conexion.php';
     <!-- Encabezado -->
     <header class="barra-navegacion">
         <div>
-            <img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo">
+            <a href="./index.php"><img class="logo-imagen" src="./img/Logo_pagina.png" alt="logo"></a>
         </div>
         <form method="POST" class="barra-busqueda">
             <input type="text" placeholder="Buscar..." name="barra_de_busqueda">
             <button type="submit" name="btn_buscar">Buscar</button>
         </form>
         <?php
-        if (!isset($_SESSION['nombre_usuario'])) {
-            echo '
-            <div class="acciones-usuario">
-                <button><a href="./login.php">Iniciar sesión</a></button>
-                <button><a href="./registrar.php">Crear cuenta</a></button>
-            </div>';
-        } else {
-            echo '<div class="acciones-usuario">Bienvenido ' . htmlspecialchars($_SESSION['nombre_usuario']) . '  
-            <button><a href="./php/cerrar_session.php">Cerrar sesión</a></button></div>';
-        }
+            if (!isset($_SESSION['nombre_usuario'])) {
+                echo '
+                <div class="acciones-usuario">
+                    <button><a href="./login.php">Iniciar sesión</a></button>
+                    <button><a href="./registrar.php">Crear cuenta</a></button>
+                </div>';
+            } else {
+                echo '<div class="acciones-usuario">Bienvenido ' . htmlspecialchars($_SESSION['nombre_usuario']) . '  
+                <button><a href="./php/cerrar_session.php">Cerrar sesión</a></button></div>';
+            }
         ?>
     </header>
 
